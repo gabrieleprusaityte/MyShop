@@ -1,4 +1,25 @@
-const items = [
+const products = document.querySelector(".products") as HTMLElement
+const categoryFood  = document.querySelector(".categoryFood") as HTMLElement
+const button1 = document.querySelector(".button1") as HTMLElement
+const button2 = document.querySelector(".button2") as HTMLElement
+const mainBox = document.querySelector(".mainBox") as HTMLElement
+const boxMoney = document.querySelector(".boxMoney") as HTMLElement
+const boxLimit = document.querySelector(".boxLimit") as HTMLElement
+const newProduct = document.querySelector(".newProduct") as HTMLElement
+const containerNewProduct = document.querySelector(".containerNewProduct") as HTMLElement
+
+
+const input: HTMLInputElement[] | NodeList = document.querySelectorAll("input")!
+
+interface prod1 {
+    name: string,
+    photo: string,
+    weight: number,
+    price: number,
+    category: string
+}
+
+const items: prod1[] = [
     {
         name: "Milk",
         photo: "https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Glass-and-bottle-of-milk-fe0997a.jpg?quality=90&resize=960,872",
@@ -63,4 +84,107 @@ const items = [
         category: "furniture"
     },
 ]
+
+
+for (const item of items) {
+
+    products.innerHTML += `<div class="card">
+                    <div>${item.name}</div>
+                    <img src="${item.photo}">
+                    <div>${item.weight}</div>
+                    <div>${item.price}</div>
+                    <div>${item.category}</div>
+                    </div>`
+}
+
+
+
+
+//@ts-ignore
+const card = document.querySelectorAll(".card") as HTMLElement
+
+let moneyCounter = 200
+let weightCounter = 30
+
+//@ts-ignore
+for (const item of card) {
+    item.onclick = () => {
+
+
+        const cln = item.cloneNode(true)
+        mainBox.appendChild(cln)
+
+
+        }
+
+    }
+
+        console.log(item.price)
+}
+
+
+button1.onclick = (): string => {
+    return newProduct.style.display = "flex"
+}
+    button2.onclick = (): void => {
+
+        const generatedCard = document.createElement("div")
+        generatedCard.classList.add("generatedCard")
+        products.appendChild(generatedCard)
+
+        const itemName = document.createElement("div")
+        itemName.classList.add("itemName")
+        //@ts-ignore
+        itemName.innerText = String(input[0].value)
+        generatedCard.appendChild(itemName)
+
+        const image = document.createElement("img")
+        //@ts-ignore
+        image.src = String(input[1].value)
+        generatedCard.appendChild(image)
+
+        const itemWeight = document.createElement("div")
+        //@ts-ignore
+        itemWeight.innerText = String(input[2].value)
+        generatedCard.appendChild(itemWeight)
+
+        const itemPrice = document.createElement("div")
+        //@ts-ignore
+        itemPrice.innerText = String(input[3].value)
+        generatedCard.appendChild(itemPrice)
+
+        const itemCategory = document.createElement("div")
+        //@ts-ignore
+        itemCategory.innerText = String(input[4].value)
+        generatedCard.appendChild(itemCategory)
+
+
+            generatedCard.onclick = () => {
+                const clnGenerated = generatedCard.cloneNode(true)
+                mainBox.appendChild(clnGenerated)
+            }
+
+        }
+
+
+        if (input[0].value === "" || input[1].value === "" || input[2].value === "" || input[3].value === "" || input[4].value === "" ) {
+            const text = document.createElement("div")
+            generatedCard.style.display = "none"
+            text.style.color = "red"
+            text.innerHTML = "Please fill in all inputs"
+            containerNewProduct.appendChild(text)
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
