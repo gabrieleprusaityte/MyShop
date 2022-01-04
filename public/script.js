@@ -1,6 +1,9 @@
 "use strict";
 const products = document.querySelector(".products");
 const categoryFood = document.querySelector(".categoryFood");
+const categoryElectronics = document.querySelector(".categoryElectronics");
+const categoryFurniture = document.querySelector(".categoryFurniture");
+const categoryAll = document.querySelector(".categoryAll");
 const button1 = document.querySelector(".button1");
 const button2 = document.querySelector(".button2");
 const mainBox = document.querySelector(".mainBox");
@@ -83,12 +86,104 @@ for (const item of items) {
                     <div>${item.category}</div>
                     </div>`;
 }
+categoryFood.onclick = (e) => {
+    console.log(e);
+    products.innerHTML = "";
+    for (const item of items) {
+        if (item.category === "food") {
+            products.innerHTML += `<div class="card">
+                    <div>${item.name}</div>
+                    <img src="${item.photo}">
+                    <div>${item.weight}</div>
+                    <div>${item.price}</div>
+                    <div>${item.category}</div>
+                    </div>`;
+        }
+    }
+    //@ts-ignore
+    const card = document.querySelectorAll(".card");
+    //@ts-ignore
+    for (const item of card) {
+        item.onclick = () => {
+            const cln = item.cloneNode(true);
+            mainBox.appendChild(cln);
+        };
+    }
+};
+categoryElectronics.onclick = () => {
+    products.innerHTML = "";
+    for (const item of items) {
+        if (item.category === "electronics") {
+            products.innerHTML += `<div class="card">
+                    <div>${item.name}</div>
+                    <img src="${item.photo}">
+                    <div>${item.weight}</div>
+                    <div>${item.price}</div>
+                    <div>${item.category}</div>
+                    </div>`;
+        }
+    }
+    //@ts-ignore
+    const card = document.querySelectorAll(".card");
+    //@ts-ignore
+    for (const item of card) {
+        item.onclick = () => {
+            const cln = item.cloneNode(true);
+            mainBox.appendChild(cln);
+        };
+    }
+};
+categoryFurniture.onclick = () => {
+    products.innerHTML = "";
+    for (const item of items) {
+        if (item.category === "furniture") {
+            products.innerHTML += `<div class="card">
+                    <div>${item.name}</div>
+                    <img src="${item.photo}">
+                    <div>${item.weight}</div>
+                    <div>${item.price}</div>
+                    <div>${item.category}</div>
+                    </div>`;
+        }
+    }
+    //@ts-ignore
+    const card = document.querySelectorAll(".card");
+    //@ts-ignore
+    for (const item of card) {
+        item.onclick = () => {
+            const cln = item.cloneNode(true);
+            mainBox.appendChild(cln);
+        };
+    }
+};
+categoryAll.onclick = () => {
+    products.innerHTML = "";
+    for (const item of items) {
+        products.innerHTML += `<div class="card">
+                    <div>${item.name}</div>
+                    <img src="${item.photo}">
+                    <div>${item.weight}</div>
+                    <div>${item.price}</div>
+                    <div>${item.category}</div>
+                    </div>`;
+    }
+    //@ts-ignore
+    const card = document.querySelectorAll(".card");
+    //@ts-ignore
+    for (const item of card) {
+        item.onclick = () => {
+            const cln = item.cloneNode(true);
+            mainBox.appendChild(cln);
+        };
+    }
+};
 //@ts-ignore
 const card = document.querySelectorAll(".card");
 let moneyCounter = 200;
 let weightCounter = 30;
+//@ts-ignore
 for (const item of card) {
-    item.onclick = () => {
+    item.onclick = (e) => {
         const cln = item.cloneNode(true);
         mainBox.appendChild(cln);
         if (moneyCounter >= item.price && weightCounter >= item.weight) {
@@ -98,45 +193,45 @@ for (const item of card) {
             boxLimit.innerHTML = `Weight Limit: ${weightCounter}`;
         }
     };
-    console.log(item.price);
 }
 button1.onclick = () => {
     return newProduct.style.display = "flex";
 };
 button2.onclick = () => {
-    const generatedCard = document.createElement("div");
-    generatedCard.classList.add("generatedCard");
-    products.appendChild(generatedCard);
-    const itemName = document.createElement("div");
-    itemName.classList.add("itemName");
-    //@ts-ignore
-    itemName.innerText = String(input[0].value);
-    generatedCard.appendChild(itemName);
-    const image = document.createElement("img");
-    //@ts-ignore
-    image.src = String(input[1].value);
-    generatedCard.appendChild(image);
-    const itemWeight = document.createElement("div");
-    //@ts-ignore
-    itemWeight.innerText = String(input[2].value);
-    generatedCard.appendChild(itemWeight);
-    const itemPrice = document.createElement("div");
-    //@ts-ignore
-    itemPrice.innerText = String(input[3].value);
-    generatedCard.appendChild(itemPrice);
-    const itemCategory = document.createElement("div");
-    //@ts-ignore
-    itemCategory.innerText = String(input[4].value);
-    generatedCard.appendChild(itemCategory);
-    generatedCard.onclick = () => {
-        const clnGenerated = generatedCard.cloneNode(true);
-        mainBox.appendChild(clnGenerated);
+    const newItem = {
+        //@ts-ignore
+        name: `${String(input[0].value)}`,
+        //@ts-ignore
+        photo: `${String(input[1].value)}`,
+        //@ts-ignore
+        weight: input[2].value,
+        //@ts-ignore
+        price: input[3].value,
+        //@ts-ignore
+        category: `${String(input[4].value)}`
     };
+    //@ts-ignore
+    if (input[0].value === "" || input[1].value === "" || input[2].value === "" || input[3].value === "" || input[4].value === "") {
+        const text = document.createElement("div");
+        text.style.color = "red";
+        text.innerHTML = "Please fill in all inputs";
+        containerNewProduct.appendChild(text);
+        return;
+    }
+    items.push(newItem);
+    products.innerHTML += `<div class="card">
+                    <div>${newItem.name}</div>
+                    <img src="${newItem.photo}">
+                    <div>${newItem.weight}</div>
+                    <div>${newItem.price}</div>
+                    <div>${newItem.category}</div>
+                    </div>`;
+    const card = document.querySelectorAll(".card");
+    //@ts-ignore
+    for (const item of card) {
+        item.onclick = () => {
+            const cln = item.cloneNode(true);
+            mainBox.appendChild(cln);
+        };
+    }
 };
-if (input[0].value === "" || input[1].value === "" || input[2].value === "" || input[3].value === "" || input[4].value === "") {
-    const text = document.createElement("div");
-    generatedCard.style.display = "none";
-    text.style.color = "red";
-    text.innerHTML = "Please fill in all inputs";
-    containerNewProduct.appendChild(text);
-}

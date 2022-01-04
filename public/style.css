@@ -40,16 +40,7 @@
 .button2:hover {
     cursor: pointer;
 }
-.category {
-    width: 100%;
-    height: 20px;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
-}
-.category:hover {
-    cursor: pointer;
-    background-color: lightgray;
-}
+
 .categoryFood {
     width: 100%;
     height: 20px;
@@ -57,6 +48,36 @@
     border-right: 1px solid black;
 }
 .categoryFood:hover {
+    cursor: pointer;
+    background-color: lightgray;
+}
+.categoryElectronics {
+    width: 100%;
+    height: 20px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+.categoryElectronics:hover {
+    cursor: pointer;
+    background-color: lightgray;
+}
+.categoryFurniture {
+    width: 100%;
+    height: 20px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+.categoryFurniture:hover {
+    cursor: pointer;
+    background-color: lightgray;
+}
+.categoryAll {
+    width: 100%;
+    height: 20px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+.categoryAll:hover {
     cursor: pointer;
     background-color: lightgray;
 }
